@@ -1,0 +1,19 @@
+{
+  "name": "autocomplete-commands-line",
+  "version": "0.0.0",
+  "description": "makes the command line easier",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaxiGarcia13/autocomplete-commands-line.git"
+  },
+  "author": "Maximiliano Garcia Mortigliengo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaxiGarcia13/autocomplete-commands-line/issues"
+  },
+  "homepage": "https://github.com/MaxiGarcia13/autocomplete-commands-line#readme"
+}

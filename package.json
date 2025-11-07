@@ -1,19 +1,28 @@
 {
   "name": "autocomplete-commands-line",
   "version": "0.0.0",
-  "description": "makes the command line easier",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "Autocomplete for your existing terminal & shell",
+  "main": "src/main.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MaxiGarcia13/autocomplete-commands-line.git"
   },
+  "keywords": [
+    "shell",
+    "autocomplete",
+    "terminal"
+  ],
   "author": "Maximiliano Garcia Mortigliengo",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/MaxiGarcia13/autocomplete-commands-line/issues"
   },
-  "homepage": "https://github.com/MaxiGarcia13/autocomplete-commands-line#readme"
+  "homepage": "https://github.com/MaxiGarcia13/autocomplete-commands-line#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@eslint/json": "^0.14.0",
+    "@eslint/markdown": "^7.5.1",
+    "eslint": "^9.39.1",
+    "globals": "^16.5.0"
+  }
 }

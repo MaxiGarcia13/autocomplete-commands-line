@@ -3,9 +3,9 @@
 // Grab the words typed so far (Zsh passes them as args)
 const { getDefaultCommands, readPackageJson } = require("./commands");
 const { joinArgs } = require("./utils");
+const { NEWLINE } = require("./utils/const");
 
-// eslint-disable-next-line no-undef
-const args = process.argv.slice(2).filter((arg) => arg !== "--" && !!arg);
+const args = process.argv.slice(2);
 
 let suggestions = [];
 
@@ -16,4 +16,4 @@ if (joinArgs(args).startsWith("npm run")) {
 }
 
 // Output suggestions, one per line
-console.log(suggestions.join("\n"));
+console.log(suggestions.join(NEWLINE));

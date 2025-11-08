@@ -14,4 +14,4 @@ if (args.startsWith("npm run")) {
 }
 
 // Output suggestions, one per line
-console.log(suggestions.join(NEWLINE));
+console.log(suggestions.join(NEWLINE).replaceAll(":", "\\:"));

@@ -30,8 +30,7 @@ function loadCache() {
 
     const cacheContent = readFileSync(CACHE_FILE, { encoding: "utf8" });
     return JSON.parse(cacheContent);
-  } catch (error) {
-    // If cache is corrupted, return empty cache
+  } catch {
     return {};
   }
 }
@@ -42,10 +41,7 @@ function saveCache(cache) {
     writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 2), {
       encoding: "utf8",
     });
-  } catch (error) {
-    // Silently fail if we can't write cache
-    // This prevents the autocomplete from breaking
-  }
+  } catch {}
 }
 
 function isExpired(entry) {

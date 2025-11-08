@@ -1,66 +1,43 @@
-#!/usr/bin/env node
-
 const { execSync } = require("node:child_process");
 const { joinArgs, filterArgs, getLastCommand } = require("../utils");
 
 function getDefaultCommands(args) {
-  return getSubCommandsAndOptions(args);
-}
-
-function execSyncCommand(command) {
-  const exec = (cmd) =>
-    execSync(cmd, {
-      encoding: "utf8",
-      stdio: "pipe",
-    });
-
-  try {
-    if (exec(command + " --help 2>/dev/null")) {
-      return exec(command + " --help");
-    }
-
-    if (exec(command + " -h 2>/dev/null")) {
-      return exec(command + " -h");
-    }
-
-    if (exec(command + " help 2>/dev/null")) {
-      return exec(command + " help");
-    }
-  } catch (error) {
-    return (
-      error.output?.toString() ||
-      error.stdout?.toString() ||
-      error.stderr?.toString() ||
-      []
-    );
-  }
-
-  return [];
-}
-
-function getSubCommandsAndOptions(args) {
   if (args.length === 0) {
     return [];
   }
 
-  const filteredArgs = joinArgs(getLastCommand(filterArgs(args)));
+  const filteredArgs = getLastCommand(filterArgs(args));
 
   const output = execSyncCommand(filteredArgs);
 
   const options = getOptions(output);
   const commands = getSubCommands(output);
 
-  const result = [...commands, ...options];
+  return [...commands, ...options];
+}
 
-  if (result.length === 0) {
-    const lastCommand = args.pop();
+function execSyncCommand(args) {
+  const help = ["--help", "-h", "help"];
 
-    return getSubCommandsAndOptions(args.slice(0, args.length - 1)).filter(
-      (command) => command.includes(lastCommand),
-    );
+  let output = "";
+  const command = joinArgs(args);
+
+  for (const flag of help) {
+    try {
+      output = execSync(`${command} ${flag}`, {
+        encoding: "utf8",
+        stdio: "pipe",
+      });
+    } catch {
+      continue;
+    }
   }
 
-  return result;
+  if (output.length === 0 && args.length > 1) {
+    return execSyncCommand(args.slice(0, args.length - 1));
+  }
+
+  return output;
 }
 
 function getOptions(output) {

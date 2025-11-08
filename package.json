@@ -5,7 +5,8 @@
   "description": "Autocomplete for your existing terminal & shell",
   "main": "src/main.js",
   "scripts": {
-    "build": "rolldown src/main.js --format commonjs --platform node --file dist/main.js && cp -r src/command-line-interfaces dist",
+    "build": "rolldown src/main.js --format commonjs --platform node --file dist/main.js && npm run cp:commands",
+    "cp:commands": "cp -r src/command-line-interfaces dist && cp src/command-list.json  dist",
     "lint": "eslint . --quiet",
     "lint:format": "npm run lint --fix",
     "cache:stats": "node src/cache-manager.js stats",

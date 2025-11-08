@@ -1,5 +1,6 @@
 {
   "name": "autocomplete-commands-line",
+  "type": "commonjs",
   "version": "0.0.0",
   "description": "Autocomplete for your existing terminal & shell",
   "main": "src/main.js",

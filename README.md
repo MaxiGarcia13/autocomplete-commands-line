@@ -27,7 +27,7 @@ The autocomplete system works with these popular commands:
 
 ### Prerequisites
 
-- Node.js (version 12 or higher)
+- Node.js (version 18 or higher)
 - Zsh shell (other shells coming soon)
 
 ### Setup

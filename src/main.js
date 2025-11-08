@@ -1,21 +1,16 @@
-#!/usr/bin/env node
-
-// Grab the words typed so far (Zsh passes them as args)
 const { getDefaultCommands, readPackageJson } = require("./commands");
-const { joinArgs } = require("./utils");
-const { NEWLINE, DASH } = require("./utils/const");
+const { NEWLINE, BACKSLASH, EMPTY, SPACE } = require("./utils/const");
 
-const args = process.argv
-  .slice(2)
-  .map((arg) => arg.trim())
-  .filter((arg) => arg.length > 0 && !arg.includes(DASH));
+const args = process.env.COMP_LINE.toString()
+  .trim()
+  .replaceAll(BACKSLASH, EMPTY);
 
 let suggestions = [];
 
-if (joinArgs(args).startsWith("npm run")) {
+if (args.startsWith("npm run")) {
   suggestions = readPackageJson();
 } else {
-  suggestions = getDefaultCommands(args);
+  suggestions = getDefaultCommands(args.split(SPACE));
 }
 
 // Output suggestions, one per line

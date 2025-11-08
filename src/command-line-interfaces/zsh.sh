@@ -21,7 +21,7 @@ if type compdef &>/dev/null; then
     _describe 'values' reply
   }
 
-  for cmd in git npm; do
+  for cmd in $(node -p "require('./src/command-list.json').join(' ')"); do
     compdef _dynamic_completion $cmd
   done
 fi

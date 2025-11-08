@@ -1,5 +1,4 @@
 echo "maxigarcia13/autocomplete-commands-line@$(node -p "require('$AUTOCOMPLETE_COMMANDS_LINE_PATH/package.json').version") is running"
-echo $COMMAND_LINE_SRC
 
 autoload -Uz compinit
 compinit
@@ -22,7 +21,7 @@ if type compdef &>/dev/null; then
     _describe 'values' reply
   }
 
-  for cmd in $(node -p "require('$AUTOCOMPLETE_COMMANDS_LINE_PATH/src/command-list.json').join(' ')"); do
+  for cmd in $(node -p "require('$COMMAND_LINE_SRC/src/command-list.json').join(' ')"); do
     compdef _dynamic_completion $cmd
   done
 fi

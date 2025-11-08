@@ -9,6 +9,7 @@
 - 🧠 **Intelligent Parsing** - Dynamically parses help output to provide relevant options and subcommands
 - 🐚 **Shell Integration** - Currently supports Zsh with plans for Bash and Fish
 - ⚡ **Fast & Lightweight** - Minimal overhead, instant suggestions
+- 💾 **Smart Caching** - Caches command help responses for 24 hours to improve performance
 
 ## Supported Commands
 
@@ -82,10 +83,11 @@ npm run <TAB>                # Shows: start, test, build, dev, lint, etc.
 The autocomplete system uses several intelligent strategies:
 
 1. **Help Output Parsing** - Executes commands with `--help`, `-h`, or `help` flags to extract available options and subcommands
-2. **Pattern Matching** - Uses regular expressions to identify command options (--flag) and subcommands
-3. **Fallback Strategy** - If a command fails, it tries parent commands to provide relevant suggestions
-4. **npm Integration** - Special handling for npm commands to read package.json scripts
-5. **Shell Integration** - Uses Zsh's completion system for seamless integration
+2. **Smart Caching** - Caches command help responses for 24 hours to avoid repeated executions
+3. **Pattern Matching** - Uses regular expressions to identify command options (--flag) and subcommands
+4. **Fallback Strategy** - If a command fails, it tries parent commands to provide relevant suggestions
+5. **npm Integration** - Special handling for npm commands to read package.json scripts
+6. **Shell Integration** - Uses Zsh's completion system for seamless integration
 
 ## Configuration
 
@@ -106,6 +108,32 @@ To add support for additional commands, edit `src/command-list.json`:
 - `COMP_LINE` - Current command line (automatically set by shell)
 - `COMP_CWORD` - Current cursor word position
 - `COMP_POINT` - Current cursor position
+
+### Cache Management
+
+The system automatically caches command help responses to improve performance. Cache entries expire after 24 hours.
+
+#### Cache Commands
+
+```bash
+npm run cache:stats                   # View cache statistics
+npm run cache:clean                   # Remove expired entries
+npm run cache:clear                   # Clear all cache entries
+```
+
+#### Cache Location
+
+Cache files are stored in `~/.autocomplete-commands-cache/` in your home directory.
+
+#### Manual Cache Management
+
+You can also use the cache manager directly:
+
+```bash
+node src/cache-manager.js stats       # Show cache statistics
+node src/cache-manager.js clean       # Remove expired entries
+node src/cache-manager.js clear       # Clear all cache
+```
 
 ## License
 

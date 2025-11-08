@@ -1,5 +1,11 @@
 const { execSync } = require("node:child_process");
-const { joinArgs, filterArgs, getLastCommand } = require("../utils");
+const {
+  joinArgs,
+  filterArgs,
+  getLastCommand,
+  getCachedResponse,
+  setCachedResponse,
+} = require("../utils");
 
 function getDefaultCommands(args) {
   if (args.length === 0) {
@@ -11,12 +17,18 @@ function getDefaultCommands(args) {
   const output = execSyncCommand(filteredArgs);
 
   const options = getOptions(output);
-  const commands = getSubCommands(output);
 
-  return [...commands, ...options];
+  const subCommands = args.length === 1 ? getSubCommands(output) : [];
+
+  return [...subCommands, ...options];
 }
 
 function execSyncCommand(args) {
+  const cachedOutput = getCachedResponse(args);
+  if (cachedOutput) {
+    return cachedOutput;
+  }
+
   const help = ["--help", "-h", "help"];
 
   let output = "";
@@ -28,6 +40,7 @@ function execSyncCommand(args) {
         encoding: "utf8",
         stdio: "pipe",
       });
+      break; // Exit loop on successful execution
     } catch {
       continue;
     }
@@ -35,6 +48,10 @@ function execSyncCommand(args) {
 
   if (output.length === 0 && args.length > 1) {
     return execSyncCommand(args.slice(0, args.length - 1));
+  }
+
+  if (output.length > 0) {
+    setCachedResponse(args, output);
   }
 
   return output;

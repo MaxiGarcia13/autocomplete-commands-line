@@ -6,7 +6,10 @@
   "main": "src/main.js",
   "scripts": {
     "lint": "eslint . --quiet",
-    "lint:format": "npm run lint --fix"
+    "lint:format": "npm run lint --fix",
+    "cache:stats": "node src/cache-manager.js stats",
+    "cache:clean": "node src/cache-manager.js clean",
+    "cache:clear": "node src/cache-manager.js clear"
   },
   "repository": {
     "type": "git",

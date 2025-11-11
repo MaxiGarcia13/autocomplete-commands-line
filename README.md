@@ -7,6 +7,10 @@
 - 🚀 **Universal Command Support** - Works with 40+ popular commands including Git, Docker, npm, AWS CLI, and more
 - 📦 **npm Scripts Integration** - Automatically suggests npm scripts from your `package.json`
 
+## Demo
+
+<video src="/assets/demo.mov" autoplay muted loop playsinline width="600"></video>
+
 ## Supported Commands
 
 The autocomplete system works with these popular commands:

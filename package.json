@@ -3,14 +3,6 @@
   "type": "commonjs",
   "version": "0.0.0",
   "description": "Autocomplete for your existing terminal & shell",
-  "main": "src/main.js",
-  "scripts": {
-    "lint": "eslint . --quiet",
-    "lint:format": "npm run lint --fix",
-    "cache:stats": "node src/cache-manager.js stats",
-    "cache:clean": "node src/cache-manager.js clean",
-    "cache:clear": "node src/cache-manager.js clear"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MaxiGarcia13/autocomplete-commands-line.git"
@@ -25,12 +17,5 @@
   "bugs": {
     "url": "https://github.com/MaxiGarcia13/autocomplete-commands-line/issues"
   },
-  "homepage": "https://github.com/MaxiGarcia13/autocomplete-commands-line#readme",
-  "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@eslint/json": "^0.14.0",
-    "@eslint/markdown": "^7.5.1",
-    "eslint": "^9.39.1",
-    "globals": "^16.5.0"
-  }
+  "homepage": "https://github.com/MaxiGarcia13/autocomplete-commands-line#readme"
 }

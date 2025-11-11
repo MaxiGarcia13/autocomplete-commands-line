@@ -1,8 +1,7 @@
-# This script is used to initialize the zsh shell with the default completion support.
-# It also provides completion for npm scripts.
-
-autoload -Uz compinit
-compinit
+if ! whence compinit > /dev/null; then
+  autoload -Uz compinit
+  compinit
+fi
 
 if type compdef &>/dev/null; then
   _read_package_scripts() {

@@ -9,7 +9,7 @@
 
 ## Demo
 
-<video src="/assets/demo.mov" autoplay muted loop playsinline width="600"></video>
+![Demo](media/demo.gif)
 
 ## Supported Commands
 
